@@ -1,10 +1,19 @@
 package com.example.validation.dto;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+
+import javax.validation.Valid;
+import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import com.example.validation.annotation.YearMonth;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -17,10 +26,11 @@ public class User {
 
 	@NotBlank
 	private String name;
-	@Max(value = 90, message = "나이가 안맞아~~~ 모든 validation은 message를 가지고 있어서 수정할 수 있다.")
+
+	@Max(value = 90)
 	private int age;
-	@Email
-	private String email;
-	@Pattern(regexp = "^\\d{2,3}-\\d{3,4}-\\d{4}$", message = "핸드폰 번호의 양식과 맞지 않습니다. 01x-xxx(x)-xxxx")
-	private String phoneNumber;
+
+	@Valid
+	private List<Car> cars;
+
 }
